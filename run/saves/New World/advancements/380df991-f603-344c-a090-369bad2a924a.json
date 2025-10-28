@@ -1,0 +1,15 @@
+{
+  "pixelmon:pokedex/pokedex_trigger": {
+    "criteria": {
+      "pokedex_base": "2025-10-28 20:39:24 -0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2025-10-28 20:39:08 -0300"
+    },
+    "done": false
+  },
+  "DataVersion": 2586
+}
