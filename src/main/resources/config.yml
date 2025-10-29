@@ -1,0 +1,127 @@
+# LegendsArena Configuration File
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+database:
+  type: sqlite
+  host: "localhost"
+  port: 3306
+  database: "legendsarena"
+  username: "user"
+  password: "password"
+
+general:
+  baseline-elo: 1200
+  plugin-enabled: true
+
+season:
+  start-date: "2025-01-01"
+  end-date: "2025-03-31"
+  elo-reset-formula: "HARD"
+
+elo:
+  provisional-k-factor: 64
+  provisional-matches: 10
+  winstreak-bonus:
+    threshold: 3
+    bonus-per-win: 5
+    max-bonus: 20
+  max-elo-gain: 50
+  max-elo-loss: 50
+  min-elo: 100
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#                                    FILAS DE BATALHA (BATTLE QUEUES)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Cada item nesta lista é uma fila de ranqueada separada que os jogadores podem entrar.
+# Cada fila terá seu próprio ranking e ELO.
+queues:
+  - id: "ou" # Identificador único para a fila
+    name: "&cOverUsed" # Nome que aparecerá para os jogadores
+    enabled: true
+    # Regras de batalha específicas para esta fila
+    battle-specs:
+      level-cap: 100
+      clauses:
+        - "sleepclause"
+        - "evasionclause"
+        - "ohkoclause"
+        - "endlessbattleclause"
+        - "speciesclause"
+      banned-pokemon:
+        - "Mewtwo"
+        - "Rayquaza"
+        - "Zacian_Crowned"
+      banned-moves:
+        - "Double Team"
+        - "Fissure"
+      banned-abilities:
+        - "Moody"
+        - "Shadow Tag"
+      banned-items:
+        - "King's Rock"
+        - "Razor Fang"
+
+  - id: "uu"
+    name: "&aUnderUsed"
+    enabled: true
+    battle-specs:
+      level-cap: 100
+      clauses:
+        - "sleepclause"
+        - "evasionclause"
+        - "ohkoclause"
+      banned-pokemon:
+        - "Charizard" # Exemplo
+        - "Gengar"    # Exemplo
+      banned-moves: [ ]
+      banned-abilities: [ ]
+      banned-items: [ ]
+
+  - id: "little-cup"
+    name: "&eLittle Cup"
+    enabled: false # Fila desativada por enquanto
+    battle-specs:
+      level-cap: 5
+      clauses:
+        - "speciesclause"
+        - "sleepclause"
+      # Exemplo de banimento de forma específica
+      banned-pokemon:
+        - "Scyther"
+      banned-moves:
+        - "Dragon Rage"
+        - "Sonic Boom"
+      banned-abilities: [ ]
+      banned-items:
+        - "Eviolite"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#                                        RANKS DE ELO
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Estes são os "emblemas" que os jogadores recebem com base no seu ELO em CADA fila.
+# O K-factor aqui pode ser usado como um padrão se a fila não especificar um.
+ranks:
+  - name: "Bronze"
+    min-elo: 100
+    max-elo: 1399
+    k-factor: 40
+  - name: "Prata"
+    min-elo: 1400
+    max-elo: 1699
+    k-factor: 32
+  - name: "Ouro"
+    min-elo: 1700
+    max-elo: 1999
+    k-factor: 24
+  - name: "Lendário"
+    min-elo: 2000
+    max-elo: 9999
+    k-factor: 16
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+messages:
+  queue-join: "&aVocê entrou na fila %queue_name%!"
+  queue-leave: "&cVocê saiu da fila %queue_name%."
+  match-found: "&bPartida encontrada na fila %queue_name%! Adversário: &e%opponent%"
+  elo-change: "&7Seu ELO em %queue_name% mudou: &e%new-elo% &7(&a%change%&7)"

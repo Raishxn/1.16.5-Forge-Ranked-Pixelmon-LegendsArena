@@ -1,36 +1,29 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="MIT"
+license="All rights reserved"
+
+# Adicione esta linha. É a mais importante.
+# Ela diz ao servidor para permitir que jogadores sem o mod se conectem.
+displayTest="IGNORE_SERVER_VERSION"
 
 [[mods]]
 modId="legendsarena"
-version="0.0.1"
+version="1.0.0"
 displayName="Legends Arena"
-displayURL="https://github.com/EnvyWare" # URL HERE
-credits="https://github.com/EnvyWare" # Your name here
-authors="https://github.com/EnvyWare" # Your name here
 description='''
-Description of the mod here
+Um sistema de batalhas ranqueadas para servidores Pixelmon.
 '''
 
 [[dependencies.legendsarena]]
-    modId="forge"
-    mandatory=true
-    versionRange="[36,)"
-    ordering="NONE"
-    side="BOTH"
+modId="forge"
+mandatory=true
+versionRange="[36,)"
+ordering="NONE"
+side="BOTH"
 
 [[dependencies.legendsarena]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.5,1.17)"
-    ordering="NONE"
-    side="BOTH"
-
-
-[[dependencies.legendsarena]]
-    modId="pixelmon"
-    mandatory=true
-    versionRange="[9.1.2,)"
-    ordering="NONE"
-    side="BOTH"
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.5,1.17)"
+ordering="NONE"
+side="BOTH"

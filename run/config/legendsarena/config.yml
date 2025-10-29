@@ -1,1 +1,30 @@
-{database.type: sqlite, general.baseline-elo: 1200, general.plugin-enabled: true}
+database.type: sqlite
+general.baseline-elo: 1200
+general.plugin-enabled: true
+database: {type: sqlite, host: localhost, port: 3306, database: legendsarena, username: user,
+    password: password}
+general: {baseline-elo: 1200, plugin-enabled: true}
+season: {start-date: '2025-01-01', end-date: '2025-03-31', elo-reset-formula: HARD}
+elo:
+    provisional-k-factor: 64
+    provisional-matches: 10
+    winstreak-bonus: {threshold: 3, bonus-per-win: 5, max-bonus: 20}
+    max-elo-gain: 50
+    max-elo-loss: 50
+    min-elo: 100
+queues:
+-   id: default
+    name: Default Queue
+    enabled: true
+    battle-specs:
+        level-cap: 100
+        clauses: [speciesclause]
+        banned-pokemon: []
+        banned-moves: []
+        banned-abilities: []
+        banned-items: []
+ranks:
+- {name: Default, min-elo: 0, max-elo: 1000, k-factor: 32}
+messages: {queue-join: '&aVocê entrou na fila ranqueada!', queue-leave: '&cVocê saiu
+        da fila ranqueada.', match-found: '&bPartida encontrada! Adversário: &e%opponent%',
+    elo-change: '&7Seu ELO mudou: &e%new-elo% &7(&a%change%&7)'}

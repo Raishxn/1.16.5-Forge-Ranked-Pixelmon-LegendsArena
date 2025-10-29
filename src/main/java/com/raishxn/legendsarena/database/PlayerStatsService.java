@@ -1,129 +1,80 @@
 package com.raishxn.legendsarena.database;
 
 import com.raishxn.legendsarena.ModFile;
-import com.raishxn.legendsarena.config.ConfigManager;
-import net.minecraft.entity.player.ServerPlayerEntity;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class PlayerStatsService {
 
-    public static PlayerStats getPlayerStats(ServerPlayerEntity player, String tier) {
-        UUID playerUuid = player.getUUID();
-        int currentSeason = ConfigManager.get("season-settings.current-season");
+    public static PlayerStats getPlayerStats(UUID playerUuid, String queueId) {
+        int currentSeason = 1; // Placeholder
+        String sql = "SELECT * FROM player_stats WHERE player_uuid = ? AND queue_id = ? AND season = ?";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(
-                     "SELECT * FROM player_stats WHERE player_uuid = ? AND tier = ? AND season = ?")) {
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerUuid.toString());
+            pstmt.setString(2, queueId);
+            pstmt.setInt(3, currentSeason);
 
-            stmt.setString(1, playerUuid.toString());
-            stmt.setString(2, tier);
-            stmt.setInt(3, currentSeason);
-
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return mapResultSetToPlayerStats(rs);
-            } else {
-                return createNewPlayerStats(player, tier, currentSeason);
+                // CORREÇÃO: Usa o novo construtor
+                return new PlayerStats(
+                        playerUuid,
+                        rs.getString("player_name"),
+                        queueId,
+                        rs.getInt("elo"),
+                        rs.getInt("wins"),
+                        rs.getInt("losses"),
+                        rs.getInt("winstreak"),
+                        rs.getInt("matches_played"),
+                        rs.getInt("season")
+                );
             }
         } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao buscar estatísticas do jogador.", e);
-            return null;
+            ModFile.LOGGER.error("Erro ao obter estatísticas do jogador.", e);
         }
+        return null;
     }
 
-    private static PlayerStats createNewPlayerStats(ServerPlayerEntity player, String tier, int season) {
-        String sql = "INSERT INTO player_stats(player_uuid, player_name, tier, season, elo) VALUES(?,?,?,?,?)";
-        int baselineElo = ConfigManager.get("general.baseline-elo");
+    public static void createPlayerStats(UUID playerUuid, String playerName, String queueId) {
+        // CORREÇÃO: Acesso correto à config
+        int baselineElo = ModFile.getInstance().getConfig().getGeneral().getBaselineElo();
+        int currentSeason = 1; // Placeholder
+        String sql = "INSERT INTO player_stats(player_uuid, player_name, queue_id, elo, wins, losses, winstreak, matches_played, season) VALUES(?, ?, ?, ?, 0, 0, 0, 0, ?)";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, player.getUUID().toString());
-            stmt.setString(2, player.getName().getString());
-            stmt.setString(3, tier);
-            stmt.setInt(4, season);
-            stmt.setInt(5, baselineElo);
-            stmt.executeUpdate();
-
-            PlayerStats newStats = new PlayerStats();
-            newStats.setPlayerUuid(player.getUUID());
-            newStats.setPlayerName(player.getName().getString());
-            newStats.setTier(tier);
-            newStats.setSeason(season);
-            newStats.setElo(baselineElo);
-            return newStats;
-
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerUuid.toString());
+            pstmt.setString(2, playerName);
+            pstmt.setString(3, queueId);
+            pstmt.setInt(4, baselineElo);
+            pstmt.setInt(5, currentSeason);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao criar novo registro de estatísticas.", e);
-            return null;
+            ModFile.LOGGER.error("Erro ao criar estatísticas para o jogador.", e);
         }
     }
 
     public static void updatePlayerStats(PlayerStats stats) {
-        String sql = "UPDATE player_stats SET player_name = ?, elo = ?, wins = ?, losses = ?, " +
-                "winstreak = ?, matches_played = ?, best_winstreak = ? " +
-                "WHERE player_uuid = ? AND tier = ? AND season = ?";
+        String sql = "UPDATE player_stats SET elo = ?, wins = ?, losses = ?, winstreak = ?, matches_played = ? WHERE player_uuid = ? AND queue_id = ? AND season = ?";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, stats.getPlayerName());
-            stmt.setInt(2, stats.getElo());
-            stmt.setInt(3, stats.getWins());
-            stmt.setInt(4, stats.getLosses());
-            stmt.setInt(5, stats.getWinstreak());
-            stmt.setInt(6, stats.getMatchesPlayed());
-            stmt.setInt(7, stats.getBestWinstreak());
-            stmt.setString(8, stats.getPlayerUuid().toString());
-            stmt.setString(9, stats.getTier());
-            stmt.setInt(10, stats.getSeason());
-
-            stmt.executeUpdate();
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, stats.getElo());
+            pstmt.setInt(2, stats.getWins());
+            pstmt.setInt(3, stats.getLosses());
+            pstmt.setInt(4, stats.getWinstreak());
+            pstmt.setInt(5, stats.getMatchesPlayed());
+            pstmt.setString(6, stats.getPlayerUuid().toString());
+            pstmt.setString(7, stats.getQueueId()); // CORREÇÃO: Usa o novo getter
+            pstmt.setInt(8, stats.getSeason());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             ModFile.LOGGER.error("Erro ao atualizar estatísticas do jogador.", e);
         }
-    }
-
-    public static List<PlayerStats> getTop10Players(String tier) {
-        List<PlayerStats> topPlayers = new ArrayList<>();
-        int currentSeason = ConfigManager.get("season-settings.current-season");
-        String sql = "SELECT * FROM player_stats WHERE tier = ? AND season = ? ORDER BY elo DESC LIMIT 10";
-
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, tier);
-            stmt.setInt(2, currentSeason);
-
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                topPlayers.add(mapResultSetToPlayerStats(rs));
-            }
-        } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao buscar o top 10 do ranking.", e);
-        }
-        return topPlayers;
-    }
-
-    private static PlayerStats mapResultSetToPlayerStats(ResultSet rs) throws SQLException {
-        PlayerStats stats = new PlayerStats();
-        stats.setPlayerUuid(UUID.fromString(rs.getString("player_uuid")));
-        stats.setPlayerName(rs.getString("player_name"));
-        stats.setTier(rs.getString("tier"));
-        stats.setSeason(rs.getInt("season"));
-        stats.setElo(rs.getInt("elo"));
-        stats.setWins(rs.getInt("wins"));
-        stats.setLosses(rs.getInt("losses"));
-        stats.setWinstreak(rs.getInt("winstreak"));
-        stats.setMatchesPlayed(rs.getInt("matches_played"));
-        stats.setBestWinstreak(rs.getInt("best_winstreak"));
-        return stats;
     }
 }

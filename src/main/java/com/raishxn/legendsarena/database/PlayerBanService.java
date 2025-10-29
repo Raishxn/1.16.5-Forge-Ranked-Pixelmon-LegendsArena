@@ -1,68 +1,56 @@
 package com.raishxn.legendsarena.database;
 
 import com.raishxn.legendsarena.ModFile;
-import net.minecraft.entity.player.ServerPlayerEntity;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class PlayerBanService {
 
-    public static void banPlayer(ServerPlayerEntity player, String tier, long durationMillis, String reason) {
-        String sql = "INSERT OR REPLACE INTO player_bans (player_uuid, tier, end_timestamp, reason) VALUES (?, ?, ?, ?)";
-        long endTime = System.currentTimeMillis() + durationMillis;
+    public static void banPlayer(UUID playerUuid, String reason, UUID bannerUuid, long duration) {
+        long bannedAt = System.currentTimeMillis();
+        long expiresAt = bannedAt + duration;
+        String sql = "INSERT INTO player_bans(player_uuid, reason, banned_by_uuid, banned_at, expires_at) VALUES(?, ?, ?, ?, ?)";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, player.getUUID().toString());
-            stmt.setString(2, tier);
-            stmt.setLong(3, endTime);
-            stmt.setString(4, reason);
-            stmt.executeUpdate();
-
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerUuid.toString());
+            pstmt.setString(2, reason);
+            pstmt.setString(3, bannerUuid.toString());
+            pstmt.setLong(4, bannedAt);
+            pstmt.setLong(5, expiresAt);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao banir o jogador " + player.getName().getString(), e);
+            ModFile.LOGGER.error("Erro ao banir jogador da base de dados.", e);
         }
     }
 
-    public static void unbanPlayer(ServerPlayerEntity player, String tier) {
-        String sql = "DELETE FROM player_bans WHERE player_uuid = ? AND tier = ?";
+    public static void unbanPlayer(UUID playerUuid) {
+        String sql = "DELETE FROM player_bans WHERE player_uuid = ?";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, player.getUUID().toString());
-            stmt.setString(2, tier);
-            stmt.executeUpdate();
-
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerUuid.toString());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao desbanir o jogador " + player.getName().getString(), e);
+            ModFile.LOGGER.error("Erro ao desbanir jogador da base de dados.", e);
         }
     }
 
-    public static boolean isPlayerBanned(ServerPlayerEntity player, String tier) {
-        String sql = "SELECT end_timestamp FROM player_bans WHERE player_uuid = ? AND tier = ?";
+    public static boolean isPlayerBanned(UUID playerUuid) {
+        String sql = "SELECT expires_at FROM player_bans WHERE player_uuid = ? AND expires_at > ?";
 
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, player.getUUID().toString());
-            stmt.setString(2, tier);
-
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                long endTime = rs.getLong("end_timestamp");
-                // Se o tempo de banimento for maior que o tempo atual, ele ainda está banido.
-                return endTime > System.currentTimeMillis();
-            }
-            return false; // Não há registro de banimento.
-
+        try (Connection conn = ModFile.getInstance().getDatabaseManager().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, playerUuid.toString());
+            pstmt.setLong(2, System.currentTimeMillis());
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next();
         } catch (SQLException e) {
-            ModFile.LOGGER.error("Erro ao verificar status de banimento do jogador " + player.getName().getString(), e);
-            return true; // Previne que o jogador jogue em caso de erro no DB.
+            ModFile.LOGGER.error("Erro ao verificar se o jogador está banido.", e);
         }
+        return false;
     }
 }

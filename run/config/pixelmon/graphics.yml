@@ -23,5 +23,5 @@ global-emissive-toggle: false
 global-sprite-toggle: false
 spectator-range-blocks: 10.0
 should-render-pokemon-outside-battle: false
-should-send-toasts: true
+should-send-toasts: false
 potion-particles-visible: true
