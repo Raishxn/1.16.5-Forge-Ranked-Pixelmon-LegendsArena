@@ -1,171 +1,29 @@
-[28out2025 20:37:41.613] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20210115.111550, --fml.mcVersion, 1.16.5, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 36.2.34, --assetIndex, 1.16, --assetsDir, C:\Users\Admin\.gradle\caches\forge_gradle\assets, --version, MOD_DEV, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[28out2025 20:37:41.616] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting: java version 1.8.0_472 by Azul Systems, Inc.
-[28out2025 20:37:41.816] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
-[28out2025 20:37:41.852] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.4 Source=file:/C:/Users/Admin/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/4ec7d77d9ab32596ca0b78bb123956734767e3a/mixin-0.8.4.jar Service=ModLauncher Env=CLIENT
-[28out2025 20:37:41.898] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Configuration file C:\Users\Admin\IdeaProjects\1.16.5-Forge-Pixelmon-LegendsArena\run\config\fml.toml is not correct. Correcting
-[28out2025 20:37:41.902] [main/WARN] [net.minecraftforge.fml.loading.FMLConfig/CORE]: Incorrect key [defaultConfigPath] was corrected from null to defaultconfigs
-[28out2025 20:37:43.688] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Admin\.gradle\caches\forge_gradle\assets, --assetIndex, 1.16, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
-[28out2025 20:37:47.452] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[28out2025 20:37:48.323] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[28out2025 20:37:48.385] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.2.2 build 10
-[28out2025 20:37:48.999] [modloading-worker-2/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 36.2.34, for MC 1.16.5 with MCP 20210115.111550
-[28out2025 20:37:49.000] [modloading-worker-15/INFO] [Pixelmon/]: Patched lifecycle fields.
-[28out2025 20:37:49.003] [modloading-worker-2/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v36.2.34 Initialized
-[28out2025 20:37:53.240] [Render thread/INFO] [com.mojang.text2speech.NarratorWindows/]: Narrator library for x64 successfully loaded
-[28out2025 20:37:53.295] [Render thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, Mod Resources
-[28out2025 20:37:53.311] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Admin\IdeaProjects\1.16.5-Forge-Pixelmon-LegendsArena\run\config\forge-client.toml is not correct. Correcting
-[28out2025 20:37:53.312] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client was corrected from null to its default, SimpleCommentedConfig:{}. 
-[28out2025 20:37:53.312] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.zoomInMissingModelTextInGui was corrected from null to its default, false. 
-[28out2025 20:37:53.313] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.forgeCloudsEnabled was corrected from null to its default, true. 
-[28out2025 20:37:53.313] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.disableStairSlabCulling was corrected from null to its default, false. 
-[28out2025 20:37:53.313] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.alwaysSetupTerrainOffThread was corrected from null to its default, false. 
-[28out2025 20:37:53.313] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.forgeLightPipelineEnabled was corrected from null to its default, true. 
-[28out2025 20:37:53.313] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.experimentalForgeLightPipelineEnabled was corrected from null to its default, false. 
-[28out2025 20:37:53.314] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.selectiveResourceReloadEnabled was corrected from null to its default, true. 
-[28out2025 20:37:53.314] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.showLoadWarnings was corrected from null to its default, true. 
-[28out2025 20:37:53.314] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key client.useCombinedDepthStencilAttachment was corrected from null to its default, false. 
-[28out2025 20:37:53.320] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file C:\Users\Admin\IdeaProjects\1.16.5-Forge-Pixelmon-LegendsArena\run\config\forge-common.toml is not correct. Correcting
-[28out2025 20:37:53.321] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key general was corrected from null to its default, SimpleCommentedConfig:{}. 
-[28out2025 20:37:53.321] [modloading-worker-15/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key general.defaultWorldType was corrected from null to its default, default. 
-[28out2025 20:37:53.383] [Worker-Main-13/INFO] [Pixelmon TCG/]: Loading TCG version 9.1.3
-[28out2025 20:37:53.398] [Worker-Main-10/INFO] [net.minecraftforge.fml.network.FMLHandshakeHandler/FMLHANDSHAKE]: Registering forge reset packet
-[28out2025 20:37:53.400] [Worker-Main-10/INFO] [net.minecraftforge.fml.network.FMLHandshakeHandler/FMLHANDSHAKE]: Registered forge reset packet
-[28out2025 20:37:53.400] [Worker-Main-10/INFO] [Pixelmon/]: Loading Pixelmon version 9.1.3
-[28out2025 20:37:53.407] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[28out2025 20:37:53.590] [Worker-Main-9/WARN] [net.minecraft.client.audio.SoundHandler/]: File pixelmon:sounds/pixelmon/popploi.ogg does not exist, cannot add it to event pixelmon:pixelmon.mob.popploi
-[28out2025 20:37:53.590] [Worker-Main-9/WARN] [net.minecraft.client.audio.SoundHandler/]: File pixelmon:sounds/pixelmon/terrakoin.ogg does not exist, cannot add it to event pixelmon:pixelmon.mob.terrakoin
-[28out2025 20:37:53.591] [Worker-Main-9/WARN] [net.minecraft.client.audio.SoundHandler/]: File pixelmon:sounds/pixelmon/zeroara.ogg does not exist, cannot add it to event pixelmon:pixelmon.mob.zeroara
-[28out2025 20:37:53.725] [Worker-Main-13/INFO] [Pixelmon TCG/]: Initializing Pixelmon TCG v9.1.3
-[28out2025 20:37:53.730] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 36.2.34 Target: null
-[28out2025 20:37:53.730] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [pixelmon] Starting version check at https://reforged.gg/forge/update.json
-[28out2025 20:37:54.258] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [pixelmon] Found status: OUTDATED Current: 9.1.3 Target: 9.1.13
-[28out2025 20:37:54.261] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [tcg] Starting version check at https://reforged.gg/forge/update.json
-[28out2025 20:37:54.588] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [tcg] Found status: OUTDATED Current: 9.1.3 Target: 9.1.13
-[28out2025 20:37:54.775] [Worker-Main-10/INFO] [Pixelmon/]: Loaded Advancements
-[28out2025 20:37:54.813] [Worker-Main-10/INFO] [Pixelmon/]: Started the async storage scheduler.
-[28out2025 20:37:55.935] [pixelmon_extras_contact_0/INFO] [Pixelmon/]: Query response: groups[5, 21, 39, 43, 44, 53, 45, 47, 48, 56, 62, 63, 64, 65, 66, 67, 68, 69, 71, 72, 73, 74, 75, 76, 77, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91] colors[0, 0, 0]
-[28out2025 20:37:56.692] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:block/hidden' referenced from: pixelmon:temporary_light#: java.io.FileNotFoundException: pixelmon:models/block/hidden.json
-[28out2025 20:37:56.849] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:block/pokegift' referenced from: pixelmon:poke_gift#facing=north: java.io.FileNotFoundException: pixelmon:models/block/pokegift.json
-[28out2025 20:37:56.863] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:block/mug' referenced from: pixelmon:mug_base#facing=north: java.io.FileNotFoundException: pixelmon:models/block/mug.json
-[28out2025 20:37:56.889] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'minecraft:block' referenced from: pixelmon:poke_display#down=true,facing=north,return=true,waterlogged=true: java.io.FileNotFoundException: minecraft:models/block.json
-[28out2025 20:37:57.037] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:block/armchair/light_blue' referenced from: pixelmon:light_blue_armchair#facing=north: java.io.FileNotFoundException: pixelmon:models/block/armchair/light_blue.json
-[28out2025 20:37:57.635] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'tcg:battle_spectator#inventory' referenced from: tcg:battle_spectator#inventory: java.io.FileNotFoundException: tcg:models/item/battle_spectator.json
-[28out2025 20:37:57.965] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:christmas_ball#inventory' referenced from: pixelmon:christmas_ball#inventory: java.io.FileNotFoundException: pixelmon:models/item/christmas_ball.json
-[28out2025 20:37:57.965] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to load model: 'pixelmon:christmas_ball_lid#inventory' referenced from: pixelmon:christmas_ball_lid#inventory: java.io.FileNotFoundException: pixelmon:models/item/christmas_ball_lid.json
-[28out2025 20:37:58.711] [Worker-Main-8/WARN] [net.minecraft.client.renderer.model.ModelBakery/]: Unable to resolve texture reference: #missing in pixelmon:block/mug_pika
-[28out2025 20:37:59.221] [Worker-Main-12/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/blocks/obsidian.png : java.io.FileNotFoundException: minecraft:textures/blocks/obsidian.png
-[28out2025 20:37:59.232] [Worker-Main-10/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/blocks/diamond_block.png : java.io.FileNotFoundException: minecraft:textures/blocks/diamond_block.png
-[28out2025 20:37:59.303] [Worker-Main-13/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/blocks/beacon.png : java.io.FileNotFoundException: minecraft:textures/blocks/beacon.png
-[28out2025 20:37:59.345] [Worker-Main-12/ERROR] [net.minecraft.client.renderer.texture.AtlasTexture/]: Using missing texture, unable to load minecraft:textures/blocks/anvil_base.png : java.io.FileNotFoundException: minecraft:textures/blocks/anvil_base.png
-[28out2025 20:37:59.445] [Worker-Main-8/WARN] [net.minecraft.client.renderer.texture.AtlasTexture/]: Texture pixelmon:items/drowned/drowned_world_teleporter with size 13x13 limits mip level from 4 to 0
-[28out2025 20:38:05.253] [Render thread/WARN] [net.minecraft.client.audio.SoundEngine/]: Missing sound for event: pixelmon:pixelmon.mob.zeraora
-[28out2025 20:38:05.371] [Render thread/INFO] [net.minecraft.client.audio.SoundSystem/]: OpenAL initialized.
-[28out2025 20:38:05.371] [Render thread/INFO] [net.minecraft.client.audio.SoundEngine/SOUNDS]: Sound engine started
-[28out2025 20:38:05.541] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 8192x8192x4 minecraft:textures/atlas/blocks.png-atlas
-[28out2025 20:38:05.739] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/signs.png-atlas
-[28out2025 20:38:05.759] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[28out2025 20:38:05.778] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[28out2025 20:38:05.797] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/chest.png-atlas
-[28out2025 20:38:05.815] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/beds.png-atlas
-[28out2025 20:38:05.834] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[28out2025 20:38:06.402] [pixelmon_spawning_0/INFO] [Pixelmon/]: Discord Rich Presence ready. User 785045931250155561.
-[28out2025 20:38:06.579] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x0 minecraft:textures/atlas/particles.png-atlas
-[28out2025 20:38:06.594] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x0 minecraft:textures/atlas/paintings.png-atlas
-[28out2025 20:38:06.607] [Render thread/INFO] [net.minecraft.client.renderer.texture.AtlasTexture/]: Created: 2048x2048x0 minecraft:textures/atlas/mob_effects.png-atlas
-[28out2025 20:38:06.845] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient/]: Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: DONT_CRASH
-[28out2025 20:38:56.418] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [spectate, ] and [spectate, target] with inputs: [words with spaces, "and symbols", word]
-[28out2025 20:38:56.418] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [spectate, target] and [spectate, ] with inputs: [Player, 0123, @e, @e[type=foo], dd12be42-52a9-4a91-a8a1-11c01849e498]
-[28out2025 20:38:56.420] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[28out2025 20:38:56.420] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[28out2025 20:38:56.421] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
-[28out2025 20:38:56.421] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[28out2025 20:38:56.422] [Render thread/WARN] [net.minecraft.command.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[28out2025 20:38:56.480] [Render thread/INFO] [net.minecraft.resources.SimpleReloadableResourceManager/]: Reloading ResourceManager: Default, forge-1.16.5-36.2.34_mapped_official_1.16.5.jar, main, Pixelmon-1.16.5-9.1.3-universal-9.1.3_mapped_official_1.16.5.jar
-[28out2025 20:38:59.231] [Render thread/INFO] [net.minecraft.item.crafting.RecipeManager/]: Loaded 8 recipes
-[28out2025 20:38:59.686] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1175 advancements
-[28out2025 20:39:00.005] [Render thread/WARN] [Pixelmon/]: Unrecognized effect type: ShedTail
-[28out2025 20:39:00.223] [Render thread/WARN] [Pixelmon/]: Attack name invalid: Snowscape
-[28out2025 20:39:00.376] [Render thread/WARN] [Pixelmon/]: Attack name invalid: Triple Dive
-[28out2025 20:39:00.561] [Render thread/ERROR] [Pixelmon/]: Potentially invalid specification (missing species): Cyclizar
-[28out2025 20:39:00.646] [Render thread/INFO] [Pixelmon/]: Registering Better Spawner.
-[28out2025 20:39:00.740] [Render thread/INFO] [Pixelmon/]: Registering trades.
-[28out2025 20:39:00.749] [Render thread/INFO] [Pixelmon/]: Registering shop items.
-[28out2025 20:39:02.610] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[28out2025 20:39:02.629] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Starting integrated minecraft server version 1.16.5
-[28out2025 20:39:02.629] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[28out2025 20:39:02.688] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Configuration file .\saves\New World\serverconfig\forge-server.toml is not correct. Correcting
-[28out2025 20:39:02.688] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server was corrected from null to its default, SimpleCommentedConfig:{}. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringEntities was corrected from null to its default, false. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringTileEntities was corrected from null to its default, false. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fullBoundingBoxLadders was corrected from null to its default, false. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBaseSummonChance was corrected from null to its default, 0.1. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.zombieBabyChance was corrected from null to its default, 0.05. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.logCascadingWorldGeneration was corrected from null to its default, true. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fixVanillaCascading was corrected from null to its default, false. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.dimensionUnloadQueueDelay was corrected from null to its default, 0. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.treatEmptyTagsAsAir was corrected from null to its default, false. 
-[28out2025 20:39:02.689] [Server thread/WARN] [net.minecraftforge.common.ForgeConfigSpec/CORE]: Incorrect key server.fixAdvancementLoading was corrected from null to its default, true. 
-[28out2025 20:39:02.753] [Server thread/WARN] [Pixelmon/]: Unable to find spawn village
-[28out2025 20:39:02.976] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[28out2025 20:39:03.047] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 0%
-[28out2025 20:39:03.514] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 7%
-[28out2025 20:39:04.004] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 18%
-[28out2025 20:39:04.519] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 31%
-[28out2025 20:39:05.021] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 43%
-[28out2025 20:39:05.508] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 55%
-[28out2025 20:39:06.016] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 67%
-[28out2025 20:39:06.500] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 79%
-[28out2025 20:39:07.015] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Preparing spawn area: 92%
-[28out2025 20:39:07.342] [Server thread/INFO] [Pixelmon/]: Datapacks found: vanilla,mod:forge,mod:examplemod,mod:pixelmon
-[28out2025 20:39:07.343] [Render thread/INFO] [net.minecraft.world.chunk.listener.LoggingChunkStatusListener/]: Time elapsed: 4345 ms
-[28out2025 20:39:07.364] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Changing view distance to 11, from 10
-[28out2025 20:39:07.993] [Netty Local Client IO #0/INFO] [net.minecraftforge.fml.network.NetworkHooks/]: Connected to a modded server.
-[28out2025 20:39:08.014] [Server thread/INFO] [net.minecraftforge.common.AdvancementLoadFix/]: Using new advancement loading for net.minecraft.advancements.PlayerAdvancements@5c04fa74
-[28out2025 20:39:08.021] [Netty Local Client IO #0/ERROR] [net.minecraft.util.registry.WorldSettingsImport/]: Error adding element: Base value out of range: 10 [0-8]
-[28out2025 20:39:08.021] [Netty Local Client IO #0/ERROR] [net.minecraft.util.registry.WorldSettingsImport/]: Error adding element: Base value out of range: 10 [0-8]
-[28out2025 20:39:08.029] [Server thread/INFO] [net.minecraft.server.management.PlayerList/]: Dev[local:E:9ea6bf05] logged in with entity id 1 at (-265.5, 4.0, 72.5)
-[28out2025 20:39:08.092] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev joined the game
-[28out2025 20:39:08.230] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
-[28out2025 20:39:08.245] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[28out2025 20:39:08.322] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[28out2025 20:39:08.323] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[28out2025 20:39:08.323] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:drowned_world
-[28out2025 20:39:08.324] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:ultra_space
-[28out2025 20:39:08.546] [Render thread/WARN] [Pixelmon/]: Unrecognized effect type: ShedTail
-[28out2025 20:39:08.886] [Render thread/WARN] [Pixelmon/]: Attack name invalid: Snowscape
-[28out2025 20:39:08.990] [Render thread/WARN] [Pixelmon/]: Attack name invalid: Triple Dive
-[28out2025 20:39:09.070] [Render thread/INFO] [Pixelmon/]: Registering trades.
-[28out2025 20:39:09.080] [Render thread/INFO] [Pixelmon/]: Registering Better Spawner.
-[28out2025 20:39:24.266] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev has made the advancement [You picked a starter!]
-[28out2025 20:39:24.271] [Render thread/INFO] [net.minecraft.client.gui.NewChatGui/]: [CHAT] Dev has made the advancement [You picked a starter!]
-[28out2025 20:39:24.327] [Render thread/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1 advancements
-[28out2025 20:39:26.056] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: <Dev> f
-[28out2025 20:39:26.058] [Render thread/INFO] [net.minecraft.client.gui.NewChatGui/]: [CHAT] <Dev> f
-[28out2025 20:39:31.293] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer/]: Saving and pausing game...
-[28out2025 20:39:31.303] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[28out2025 20:39:31.309] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[28out2025 20:39:31.309] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[28out2025 20:39:31.309] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:drowned_world
-[28out2025 20:39:31.310] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:ultra_space
-[28out2025 20:39:32.144] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Dev lost connection: Disconnected
-[28out2025 20:39:32.145] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev left the game
-[28out2025 20:39:32.156] [Server thread/INFO] [net.minecraft.network.play.ServerPlayNetHandler/]: Stopping singleplayer server as player logged out
-[28out2025 20:39:32.252] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[28out2025 20:39:32.252] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[28out2025 20:39:32.252] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[28out2025 20:39:32.252] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
-[28out2025 20:39:32.257] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World): All chunks are saved
-[28out2025 20:39:32.257] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
-[28out2025 20:39:32.258] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[28out2025 20:39:32.258] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
-[28out2025 20:39:32.258] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[28out2025 20:39:32.258] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:drowned_world
-[28out2025 20:39:32.259] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (drowned_world): All chunks are saved
-[28out2025 20:39:32.259] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[New World]'/pixelmon:ultra_space
-[28out2025 20:39:32.259] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (ultra_space): All chunks are saved
-[28out2025 20:39:32.282] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (New World): All chunks are saved
-[28out2025 20:39:32.287] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[28out2025 20:39:32.287] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[28out2025 20:39:32.287] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (drowned_world): All chunks are saved
-[28out2025 20:39:32.287] [Server thread/INFO] [net.minecraft.world.server.ChunkManager/]: ThreadedAnvilChunkStorage (ultra_space): All chunks are saved
-[28out2025 20:39:33.407] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[28out2025 22:45:45.735] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--gameDir, ., --launchTarget, fmluserdevclient, --fml.mcpVersion, 20210115.111550, --fml.mcVersion, 1.16.5, --fml.forgeGroup, net.minecraftforge, --fml.forgeVersion, 36.2.34, --assetIndex, 1.16, --assetsDir, C:\Users\Admin\.gradle\caches\forge_gradle\assets, --version, MOD_DEV, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[28out2025 22:45:45.737] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 8.1.3+8.1.3+main-8.1.x.c94d18ec starting: java version 1.8.0_462 by Temurin
+[28out2025 22:45:45.931] [main/INFO] [net.minecraftforge.fml.loading.FixSSL/CORE]: Added Lets Encrypt root certificates as additional trust
+[28out2025 22:45:45.965] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.4 Source=file:/C:/Users/Admin/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.4/4ec7d77d9ab32596ca0b78bb123956734767e3a/mixin-0.8.4.jar Service=ModLauncher Env=CLIENT
+[28out2025 22:45:47.401] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'fmluserdevclient' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Admin\.gradle\caches\forge_gradle\assets, --assetIndex, 1.16, --username, Dev, --accessToken, ❄❄❄❄❄❄❄❄, --userProperties, {}]
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:39)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:54)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:72)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.Launcher.run(Launcher.java:82)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at cpw.mods.modlauncher.Launcher.main(Launcher.java:66)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1052]: 	at net.minecraftforge.userdev.LaunchTesting.main(LaunchTesting.java:108)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: Caused by: java.lang.reflect.InvocationTargetException
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at java.lang.reflect.Method.invoke(Method.java:498)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at net.minecraftforge.userdev.FMLUserdevClientLaunchProvider.lambda$launchService$0(FMLUserdevClientLaunchProvider.java:52)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:37)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.ThreadGroup:uncaughtException:1061]: 	... 5 more
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: Caused by: java.lang.NoSuchMethodError: org.apache.logging.log4j.core.impl.ThrowableProxy.formatExtendedStackTraceTo(Ljava/lang/StringBuilder;Ljava/util/List;Lorg/apache/logging/log4j/core/pattern/TextRenderer;Ljava/lang/String;Ljava/lang/String;)V
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at cpw.mods.modlauncher.log.TransformingThrowablePatternConverter.generateEnhancedStackTrace(TransformingThrowablePatternConverter.java:87)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.CrashReportExtender.generateEnhancedStackTrace(CrashReportExtender.java:79)
+[28out2025 22:45:47.895] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraftforge.fml.CrashReportExtender.generateEnhancedStackTrace(CrashReportExtender.java:69)
+[28out2025 22:45:47.897] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraft.crash.CrashReport.getExceptionMessage(CrashReport.java:119)
+[28out2025 22:45:47.897] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraft.crash.CrashReport.getFriendlyReport(CrashReport.java:135)
+[28out2025 22:45:47.897] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraft.crash.CrashReport.preload(CrashReport.java:248)
+[28out2025 22:45:47.897] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	at net.minecraft.client.main.Main.main(Main.java:122)
+[28out2025 22:45:47.897] [main/INFO] [STDERR/]: [java.lang.Throwable:printStackTrace:644]: 	... 11 more
