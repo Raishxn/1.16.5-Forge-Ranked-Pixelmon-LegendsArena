@@ -19,3 +19,9 @@ global-wire-frame: false
 global-animation-toggle: true
 global-vertex-toggle: false
 global-emissive-togle: false
+global-emissive-toggle: false
+global-sprite-toggle: false
+spectator-range-blocks: 10.0
+should-render-pokemon-outside-battle: false
+should-send-toasts: true
+potion-particles-visible: true

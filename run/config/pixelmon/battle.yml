@@ -48,3 +48,8 @@ catch-combo-perfect-i-vs:
 - 4
 - 4
 scale-grass-battles: false
+overworld-weather-affects-wild-battle-weather: true
+overworld-weather-affects-trainer-battle-weather: true
+overworld-weather-affects-pv-p-battle-weather: false
+overworld-weather-affects-raid-battle-weather: false
+overworld-weather-can-change-battle-weather-during-battle: true

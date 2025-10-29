@@ -3,6 +3,7 @@ package com.raishxn.legendsarena.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.raishxn.legendsarena.config.ConfigManager;
+import com.raishxn.legendsarena.config.ConfigService;
 import com.raishxn.legendsarena.database.PlayerBanService;
 import com.raishxn.legendsarena.game.ReportService;
 import com.raishxn.legendsarena.game.SeasonService;
@@ -63,8 +64,11 @@ public class RankedAdminCommand {
                                 .then(Commands.argument("tier", StringArgumentType.word())
                                         .executes(context -> {
                                             String tier = StringArgumentType.getString(context, "tier");
-                                            // TODO: Lógica para ativar a tier no config e talvez limpar dados antigos.
-                                            context.getSource().sendSuccess(new StringTextComponent(TextFormatting.GREEN + "Temporada iniciada para a tier: " + tier), true);
+                                            if (ConfigService.setTierActive(tier, true)) {
+                                                context.getSource().sendSuccess(new StringTextComponent(TextFormatting.GREEN + "A tier " + tier + " foi ativada. As filas agora estão abertas."), true);
+                                            } else {
+                                                context.getSource().sendFailure(new StringTextComponent(TextFormatting.RED + "Não foi possível ativar a tier. Verifique se o nome está correto e se o arquivo config.yml não está corrompido."));
+                                            }
                                             return 1;
                                         })
                                 )
@@ -75,6 +79,9 @@ public class RankedAdminCommand {
                                             String tier = StringArgumentType.getString(context, "tier");
                                             CommandSource source = context.getSource();
                                             source.sendSuccess(new StringTextComponent(TextFormatting.YELLOW + "Finalizando temporada para a tier: " + tier + "..."), true);
+
+                                            ConfigService.setTierActive(tier, false);
+                                            source.sendSuccess(new StringTextComponent(TextFormatting.YELLOW + "A tier " + tier + " foi desativada. As filas agora estão fechadas."), true);
 
                                             boolean reportSuccess = ReportService.generateTop10Report(tier);
                                             if (reportSuccess) {

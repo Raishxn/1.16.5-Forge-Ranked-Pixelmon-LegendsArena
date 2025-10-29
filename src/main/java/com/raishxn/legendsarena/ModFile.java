@@ -1,8 +1,11 @@
 package com.raishxn.legendsarena;
 
+import com.pixelmonmod.pixelmon.Pixelmon;
 import com.raishxn.legendsarena.command.RankedAdminCommand;
 import com.raishxn.legendsarena.database.DatabaseManager;
 import com.raishxn.legendsarena.game.MatchmakingManager;
+import com.raishxn.legendsarena.listener.BattleEndListener;
+import com.raishxn.legendsarena.listener.TabListListener;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +31,8 @@ public class ModFile {
         modEventBus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(this::onRegisterCommands);
+        MinecraftForge.EVENT_BUS.register(new TabListListener());
+        Pixelmon.EVENT_BUS.register(new BattleEndListener());
     }
 
     private void setup(final FMLCommonSetupEvent event) {

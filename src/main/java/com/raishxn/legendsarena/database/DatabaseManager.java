@@ -39,13 +39,13 @@ public class DatabaseManager {
         String user = ConfigManager.get("database.mysql.user");
         String password = ConfigManager.get("database.mysql.password");
 
-        String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName + "?autoReconnect=true";
+        String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName + "?autoReconnect=true&useSSL=false";
         connection = DriverManager.getConnection(url, user, password);
     }
 
     private static void initializeTables() {
         try (Statement statement = connection.createStatement()) {
-            // Tabela player_stats (com a nova coluna best_winstreak)
+            // Tabela player_stats
             statement.execute("CREATE TABLE IF NOT EXISTS player_stats (" +
                     "player_uuid VARCHAR(36) NOT NULL," +
                     "player_name VARCHAR(16) NOT NULL," +
@@ -69,12 +69,12 @@ public class DatabaseManager {
 
             // Tabela match_history
             statement.execute("CREATE TABLE IF NOT EXISTS match_history (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                     "player_uuid VARCHAR(36)," +
                     "opponent_uuid VARCHAR(36)," +
                     "player_elo_before INT," +
                     "elo_delta INT," +
-                    "result VARCHAR(4)," +
+                    "result VARCHAR(4)," + // 'win' ou 'loss'
                     "timestamp BIGINT);");
 
             ModFile.LOGGER.info("Tabelas do banco de dados verificadas e prontas.");

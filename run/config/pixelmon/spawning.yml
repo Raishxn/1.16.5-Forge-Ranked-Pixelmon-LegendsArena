@@ -75,3 +75,19 @@ poke-loot:
 poke-stop:
     enabled: true
     loot-time: 24
+shiny-charm-rate-multiplier: 3.0
+ultra-space-horde-spawn-rate: 0.4000000059604645
+spawn-levels-increase-in-ultra-space: true
+ultra-space-level-multiplier: 2.0
+meltan-box-spawn-rate: 300
+meltan-box-spawn-radius: 15
+meltan-box-initial-scraps-count: 4
+meltan-box-scraps-multiplier: 1.8
+meltan-box-open-duration-millis: 100000
+meltan-box-cooldown-duration-millis: 3000000
+player-tracking-spawner-spawn-collection-rate: 100
+always-aggressive-dimensions:
+- pixelmon:ultra_space
+horde-battle-dimensions:
+- pixelmon:ultra_space
+spawning-disabled-dimensions: []

@@ -6,6 +6,10 @@ import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import com.pixelmonmod.pixelmon.battles.BattleRegistry;
 import com.pixelmonmod.pixelmon.battles.controller.participants.PlayerParticipant;
 import com.raishxn.legendsarena.ModFile;
+import com.raishxn.legendsarena.config.ConfigManager;
+import com.raishxn.legendsarena.database.PlayerBanService;
+import com.raishxn.legendsarena.database.PlayerStats;
+import com.raishxn.legendsarena.database.PlayerStatsService;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -31,6 +35,23 @@ public class MatchmakingManager {
     }
 
     public static void addPlayerToQueue(ServerPlayerEntity player, String tier) {
+        String tierFormatted = tier.substring(0, 1).toUpperCase() + tier.substring(1).toLowerCase();
+
+        Boolean isTierActive = ConfigManager.get("ranked-tiers." + tierFormatted + ".active");
+        if (isTierActive == null) {
+            player.sendMessage(new StringTextComponent(TextFormatting.RED + "A tier '" + tier + "' não existe."), player.getUUID());
+            return;
+        }
+        if (!isTierActive) {
+            player.sendMessage(new StringTextComponent(TextFormatting.RED + "A temporada para a tier '" + tier + "' não está ativa."), player.getUUID());
+            return;
+        }
+
+        if (PlayerBanService.isPlayerBanned(player, tier)) {
+            player.sendMessage(new StringTextComponent(TextFormatting.RED + "Você está banido de competir nesta tier."), player.getUUID());
+            return;
+        }
+
         removePlayerFromAllQueues(player);
         queues.computeIfAbsent(tier.toLowerCase(), k -> new ConcurrentHashMap<>()).put(player.getUUID(), player);
         player.sendMessage(new StringTextComponent(TextFormatting.GREEN + "Você entrou na fila para a tier " + tier + "."), player.getUUID());
@@ -44,25 +65,52 @@ public class MatchmakingManager {
         });
     }
 
+    /**
+     * Lógica de matchmaking inteligente que respeita a diferença de ranks.
+     */
     private static void findMatches() {
+        int maxRankDiff = ConfigManager.get("matchmaking-settings.max-rank-difference");
+
         for (String tier : queues.keySet()) {
             Map<UUID, ServerPlayerEntity> queue = queues.get(tier);
             if (queue.size() < 2) continue;
 
             List<ServerPlayerEntity> playersInQueue = new ArrayList<>(queue.values());
-            ServerPlayerEntity player1 = playersInQueue.get(0);
-            ServerPlayerEntity player2 = playersInQueue.get(1);
 
-            queue.remove(player1.getUUID());
-            queue.remove(player2.getUUID());
+            // Percorre a fila comparando cada jogador com todos os outros
+            for (int i = 0; i < playersInQueue.size(); i++) {
+                for (int j = i + 1; j < playersInQueue.size(); j++) {
+                    ServerPlayerEntity player1 = playersInQueue.get(i);
+                    ServerPlayerEntity player2 = playersInQueue.get(j);
 
-            activeRankedBattles.put(player1.getUUID(), tier);
-            activeRankedBattles.put(player2.getUUID(), tier);
+                    PlayerStats stats1 = PlayerStatsService.getPlayerStats(player1, tier);
+                    PlayerStats stats2 = PlayerStatsService.getPlayerStats(player2, tier);
 
-            player1.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Partida encontrada contra " + player2.getName().getString() + "!"), player1.getUUID());
-            player2.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Partida encontrada contra " + player1.getName().getString() + "!"), player2.getUUID());
+                    if (stats1 == null || stats2 == null) continue;
 
-            startRankedBattle(player1, player2);
+                    String rank1 = RankService.getRankFromElo(stats1.getElo());
+                    String rank2 = RankService.getRankFromElo(stats2.getElo());
+
+                    // A verificação principal acontece aqui!
+                    if (RankService.getRankDifference(rank1, rank2) <= maxRankDiff) {
+                        // Par compatível encontrado!
+                        queue.remove(player1.getUUID());
+                        queue.remove(player2.getUUID());
+
+                        activeRankedBattles.put(player1.getUUID(), tier);
+                        activeRankedBattles.put(player2.getUUID(), tier);
+
+                        player1.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Partida encontrada contra " + player2.getName().getString() + "!"), player1.getUUID());
+                        player2.sendMessage(new StringTextComponent(TextFormatting.AQUA + "Partida encontrada contra " + player1.getName().getString() + "!"), player2.getUUID());
+
+                        startRankedBattle(player1, player2);
+
+                        // Recomeça a busca na mesma tier, pois a lista de jogadores foi alterada
+                        findMatches();
+                        return;
+                    }
+                }
+            }
         }
     }
 
