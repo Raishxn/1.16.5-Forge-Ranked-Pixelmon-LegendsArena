@@ -1,0 +1,10 @@
+battleRules:
+  maxTeamSize: 6
+  validateDuplicates: true
+  allowShiny: true
+  allowLegendary: true
+  validateHeldItems: true
+  bannedItems:
+  - master_ball
+  - master_guard
+  enforceBattleFormat: national_dex

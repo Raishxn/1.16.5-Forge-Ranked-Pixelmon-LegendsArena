@@ -1,0 +1,24 @@
+player:
+- cmd: /ranked join <tier>
+  permission: ranked.join
+- cmd: /ranked leave
+  permission: ranked.leave
+- cmd: /ranked top <tier>
+  permission: ranked.top
+- cmd: /ranked stats <player>
+  permission: ranked.stats
+- cmd: /ranked ladder <tier> <page>
+  permission: ranked.ladder
+admin:
+- cmd: /ranked ban <player> <tier>
+  permission: ranked.admin.ban
+- cmd: /ranked unban <player> <tier>
+  permission: ranked.admin.unban
+- cmd: /ranked season start <tier>
+  permission: ranked.admin.season.start
+- cmd: /ranked season end <tier>
+  permission: ranked.admin.season.end
+- cmd: /ranked reset tier <tier> <method>
+  permission: ranked.admin.reset
+- cmd: /ranked force-match <p1> <p2>
+  permission: ranked.admin.forcematch

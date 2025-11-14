@@ -1,0 +1,17 @@
+luckperms:
+  enabled: true
+  apiSync: true
+  defaultAssignOnJoin: Treinador
+  groupPrefixing:
+    usePrefix: true
+    prefixFormat: '&c[{group}] &r'
+  rankGroups:
+    iron: ranked_iron
+    bronze: ranked_bronze
+    silver: ranked_silver
+    gold: ranked_gold
+    platinum: ranked_platinum
+    diamond: ranked_diamond
+    master: ranked_master
+    challenger: ranked_challenger
+  bypassPermission: ranked.bypass

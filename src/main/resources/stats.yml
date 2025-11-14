@@ -1,0 +1,18 @@
+leaderboard:
+  topSize: 10
+  cacheSeconds: 60
+  commands:
+    top: ranked.top
+    stats: ranked.stats
+statsDisplay:
+  show:
+  - tierFormat
+  - elo
+  - wins
+  - losses
+  - winratePercent
+  - winstreak
+  - lossstreak
+  - bannedInTier
+  - penalties
+  percentPrecision: 2

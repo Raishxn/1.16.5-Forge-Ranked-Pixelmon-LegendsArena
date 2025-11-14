@@ -1,0 +1,63 @@
+seasonRewards:
+  distributionMethod: byElo
+  byElo:
+    iron:
+    - posRange: 1-10
+      rewards:
+      - type: item
+        id: banner_iron
+        amount: 1
+      - type: money
+        amount: 500
+    bronze:
+    - posRange: 1-10
+      rewards:
+      - type: item
+        id: banner_bronze
+        amount: 1
+      - type: key
+        id: Key Gen1
+        amount: 3
+    silver:
+    - posRange: 1-10
+      rewards:
+      - type: item
+        id: banner_silver
+        amount: 1
+      - type: money
+        amount: 1500
+    gold:
+    - posRange: 1-10
+      rewards:
+      - type: item
+        id: banner_gold
+        amount: 1
+      - type: held_item
+        id: life_orb
+        amount: 1
+    platinum:
+    - posRange: 1-10
+      rewards:
+      - type: item
+        id: banner_platinum
+        amount: 1
+      - type: pokemon
+        id: legendary_f3
+        amount: 1
+    diamond:
+    - posRange: 1-10
+      rewards:
+      - type: banner
+        id: banner_diamond
+      - type: pokemon
+        id: legendary_f5
+    master:
+    - posRange: 1-10
+      rewards:
+      - type: banner
+        id: banner_master
+      - type: pokemon
+        id: legendary_f6
+  defaultRewards:
+  - type: money
+    amount: 300

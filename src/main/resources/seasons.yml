@@ -1,0 +1,11 @@
+seasons:
+  activeSeason:
+    id: season_1
+    displayName: Season 1
+    startDate: '2025-11-01'
+    endDate: '2026-01-31'
+    active: true
+  resetPolicy:
+    default: md5
+    preserveFactor: 0.25
+    newPlayerBaseElo: 1000

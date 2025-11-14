@@ -1,0 +1,11 @@
+bannedPokemons:
+- mewtwo
+- arceus
+bannedForms:
+- mega_mewtwo_x
+bannedMoves:
+- tectonicrage
+bannedAbilities:
+- hugepower
+bannedHeldItems:
+- master_ball

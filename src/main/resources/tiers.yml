@@ -1,0 +1,97 @@
+tiers:
+- id: ou
+  displayName: OU
+  description: OverUsed - regras padrão OU
+  enabled: true
+  seasonEligible: true
+  battleRules:
+    enforceFormat: true
+    maxTeamSize: 6
+    allowedPokemonTags:
+    - all
+  bans:
+    bannedPokemons:
+    - mewtwo
+    - arceus
+    bannedForms:
+    - mega_mewtwo_x
+    bannedMoves:
+    - tectonicrage
+    bannedAbilities:
+    - hugepower
+    bannedHeldItems:
+    - master_ball
+  matchmaking:
+    allowCrossElos: true
+    allowedElos:
+    - iron
+    - bronze
+    - silver
+    - gold
+    - platinum
+    - diamond
+    - master
+    - challenger
+  permissions:
+    join: ranked.tier.ou.join
+    admin: ranked.tier.ou.admin
+- id: nationaldex
+  displayName: NationalDex
+  description: National Dex format
+  enabled: true
+  seasonEligible: true
+  battleRules:
+    enforceFormat: true
+    maxTeamSize: 6
+    allowedPokemonTags:
+    - all
+  bans:
+    bannedPokemons: []
+    bannedForms: []
+    bannedMoves: []
+    bannedAbilities: []
+    bannedHeldItems: []
+  matchmaking:
+    allowCrossElos: true
+    allowedElos:
+    - iron
+    - bronze
+    - silver
+    - gold
+    - platinum
+    - diamond
+    - master
+    - challenger
+  permissions:
+    join: ranked.tier.nationaldex.join
+    admin: ranked.tier.nationaldex.admin
+- id: uu
+  displayName: UU
+  description: UnderUsed
+  enabled: true
+  seasonEligible: true
+  battleRules:
+    enforceFormat: true
+    maxTeamSize: 6
+    allowedPokemonTags:
+    - all
+  bans:
+    bannedPokemons: []
+    bannedForms: []
+    bannedMoves: []
+    bannedAbilities: []
+    bannedHeldItems: []
+  matchmaking:
+    allowCrossElos: true
+    allowedElos:
+    - iron
+    - bronze
+    - silver
+    - gold
+    - platinum
+    - diamond
+    - master
+    - challenger
+  permissions:
+    join: ranked.tier.uu.join
+    admin: ranked.tier.uu.admin

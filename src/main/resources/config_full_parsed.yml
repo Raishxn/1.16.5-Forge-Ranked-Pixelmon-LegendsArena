@@ -1,0 +1,472 @@
+full_config:
+  server:
+    name: PokeMythic Ranked
+    version: 1.1.0
+    locale: pt_BR
+  database:
+    type: mysql
+    host: 127.0.0.1
+    port: 3306
+    name: ranked_db
+    user: usuario
+    pass: senha
+    pool:
+      maxConnections: 10
+      minIdle: 1
+      connectionTimeout: 30000
+  logging:
+    level: INFO
+    logMatches: true
+    logDir: ranked_logs
+  tiers:
+  - id: ou
+    displayName: OU
+    description: OverUsed - regras padrão OU
+    enabled: true
+    seasonEligible: true
+    battleRules:
+      enforceFormat: true
+      maxTeamSize: 6
+      allowedPokemonTags:
+      - all
+    bans:
+      bannedPokemons:
+      - mewtwo
+      - arceus
+      bannedForms:
+      - mega_mewtwo_x
+      bannedMoves:
+      - tectonicrage
+      bannedAbilities:
+      - hugepower
+      bannedHeldItems:
+      - master_ball
+    matchmaking:
+      allowCrossElos: true
+      allowedElos:
+      - iron
+      - bronze
+      - silver
+      - gold
+      - platinum
+      - diamond
+      - master
+      - challenger
+    permissions:
+      join: ranked.tier.ou.join
+      admin: ranked.tier.ou.admin
+  - id: nationaldex
+    displayName: NationalDex
+    description: National Dex format
+    enabled: true
+    seasonEligible: true
+    battleRules:
+      enforceFormat: true
+      maxTeamSize: 6
+      allowedPokemonTags:
+      - all
+    bans:
+      bannedPokemons: []
+      bannedForms: []
+      bannedMoves: []
+      bannedAbilities: []
+      bannedHeldItems: []
+    matchmaking:
+      allowCrossElos: true
+      allowedElos:
+      - iron
+      - bronze
+      - silver
+      - gold
+      - platinum
+      - diamond
+      - master
+      - challenger
+    permissions:
+      join: ranked.tier.nationaldex.join
+      admin: ranked.tier.nationaldex.admin
+  - id: uu
+    displayName: UU
+    description: UnderUsed
+    enabled: true
+    seasonEligible: true
+    battleRules:
+      enforceFormat: true
+      maxTeamSize: 6
+      allowedPokemonTags:
+      - all
+    bans:
+      bannedPokemons: []
+      bannedForms: []
+      bannedMoves: []
+      bannedAbilities: []
+      bannedHeldItems: []
+    matchmaking:
+      allowCrossElos: true
+      allowedElos:
+      - iron
+      - bronze
+      - silver
+      - gold
+      - platinum
+      - diamond
+      - master
+      - challenger
+    permissions:
+      join: ranked.tier.uu.join
+      admin: ranked.tier.uu.admin
+  elos:
+  - id: iron
+    displayName: Ferro
+    minElo: 0
+    maxElo: 799
+    allowSubRanks: true
+    subRanks:
+    - Iron III
+    - Iron II
+    - Iron I
+    matchmaking:
+      canPlayWith:
+      - bronze
+    luckperms:
+      group: ranked_iron
+      inherit:
+      - Treinador
+  - id: bronze
+    displayName: Bronze
+    minElo: 800
+    maxElo: 1399
+    allowSubRanks: true
+    subRanks:
+    - Bronze III
+    - Bronze II
+    - Bronze I
+    matchmaking:
+      canPlayWith:
+      - iron
+      - silver
+    luckperms:
+      group: ranked_bronze
+  - id: silver
+    displayName: Prata
+    minElo: 1400
+    maxElo: 1999
+    allowSubRanks: true
+    subRanks:
+    - Silver III
+    - Silver II
+    - Silver I
+    matchmaking:
+      canPlayWith:
+      - bronze
+      - gold
+    luckperms:
+      group: ranked_silver
+  - id: gold
+    displayName: Ouro
+    minElo: 2000
+    maxElo: 2599
+    allowSubRanks: true
+    subRanks:
+    - Gold III
+    - Gold II
+    - Gold I
+    matchmaking:
+      canPlayWith:
+      - silver
+      - platinum
+    luckperms:
+      group: ranked_gold
+  - id: platinum
+    displayName: Platina
+    minElo: 2600
+    maxElo: 3299
+    allowSubRanks: true
+    subRanks:
+    - Plat III
+    - Plat II
+    - Plat I
+    matchmaking:
+      canPlayWith:
+      - gold
+      - diamond
+    luckperms:
+      group: ranked_platinum
+  - id: diamond
+    displayName: Diamante
+    minElo: 3300
+    maxElo: 3999
+    allowSubRanks: true
+    subRanks:
+    - Diamond III
+    - Diamond II
+    - Diamond I
+    matchmaking:
+      canPlayWith:
+      - platinum
+      - master
+    luckperms:
+      group: ranked_diamond
+  - id: master
+    displayName: Mestre
+    minElo: 4000
+    maxElo: 4999
+    allowSubRanks: false
+    matchmaking:
+      canPlayWith:
+      - diamond
+    luckperms:
+      group: ranked_master
+  - id: challenger
+    displayName: Challenger
+    minElo: 5000
+    maxElo: 99999
+    allowSubRanks: false
+    matchmaking:
+      canPlayWith:
+      - master
+    luckperms:
+      group: ranked_challenger
+  matchmaking:
+    maxEloTierDifference: 1
+    maxSubRankDifference: 2
+    preventLargeDisparity: true
+    eloTolerance: 200
+    queue:
+      maxWaitSeconds: 300
+      autoMatchFallback: true
+      partySize:
+        min: 1
+        max: 1
+  queues:
+    joinCommand: /ranked join <tier>
+    leaveCommand: /ranked leave
+    autoAccept: true
+    acceptTimeout: 20
+  commands:
+    player:
+    - cmd: /ranked join <tier>
+      permission: ranked.join
+    - cmd: /ranked leave
+      permission: ranked.leave
+    - cmd: /ranked top <tier>
+      permission: ranked.top
+    - cmd: /ranked stats <player>
+      permission: ranked.stats
+    - cmd: /ranked ladder <tier> <page>
+      permission: ranked.ladder
+    admin:
+    - cmd: /ranked ban <player> <tier>
+      permission: ranked.admin.ban
+    - cmd: /ranked unban <player> <tier>
+      permission: ranked.admin.unban
+    - cmd: /ranked season start <tier>
+      permission: ranked.admin.season.start
+    - cmd: /ranked season end <tier>
+      permission: ranked.admin.season.end
+    - cmd: /ranked reset tier <tier> <method>
+      permission: ranked.admin.reset
+    - cmd: /ranked force-match <p1> <p2>
+      permission: ranked.admin.forcematch
+  luckperms:
+    enabled: true
+    apiSync: true
+    defaultAssignOnJoin: Treinador
+    groupPrefixing:
+      usePrefix: true
+      prefixFormat: '&c[{group}] &r'
+    rankGroups:
+      iron: ranked_iron
+      bronze: ranked_bronze
+      silver: ranked_silver
+      gold: ranked_gold
+      platinum: ranked_platinum
+      diamond: ranked_diamond
+      master: ranked_master
+      challenger: ranked_challenger
+    bypassPermission: ranked.bypass
+  seasons:
+    activeSeason:
+      id: season_1
+      displayName: Season 1
+      startDate: '2025-11-01'
+      endDate: '2026-01-31'
+      active: true
+    resetPolicy:
+      default: md5
+      preserveFactor: 0.25
+      newPlayerBaseElo: 1000
+  antiSmurf:
+    enabled: true
+    evaluateAfterMatches: 25
+    suspiciousWinrateThreshold: 0.85
+    suddenEloGainThreshold: 800
+    accountAgeDaysThreshold: 30
+    playtimeHoursThreshold: 50
+    ipMatchCheck: true
+    actions:
+      flagged: monitor
+      restrictQueue: restrict_queue
+      escalate: temp_ban
+  winstreak:
+    enabled: true
+    thresholds:
+    - streak: 3
+      bonusElo: 10
+      reward: small_crate_key
+    - streak: 5
+      bonusElo: 25
+      reward: medium_crate_key
+    - streak: 10
+      bonusElo: 60
+      reward: large_crate_key
+    maxBonusPerMatch: 100
+  autoPenalties:
+    inactivityDaysToDecay: 30
+    decayPercent: 10
+    penaltyForLeavingMatch:
+      enabled: true
+      eloPenalty: 25
+      tempQueueBanSeconds: 3600
+  leaderboard:
+    topSize: 10
+    cacheSeconds: 60
+    commands:
+      top: ranked.top
+      stats: ranked.stats
+  statsDisplay:
+    show:
+    - tierFormat
+    - elo
+    - wins
+    - losses
+    - winratePercent
+    - winstreak
+    - lossstreak
+    - bannedInTier
+    - penalties
+    percentPrecision: 2
+  seasonRewards:
+    distributionMethod: byElo
+    byElo:
+      iron:
+      - posRange: 1-10
+        rewards:
+        - type: item
+          id: banner_iron
+          amount: 1
+        - type: money
+          amount: 500
+      bronze:
+      - posRange: 1-10
+        rewards:
+        - type: item
+          id: banner_bronze
+          amount: 1
+        - type: key
+          id: Key Gen1
+          amount: 3
+      silver:
+      - posRange: 1-10
+        rewards:
+        - type: item
+          id: banner_silver
+          amount: 1
+        - type: money
+          amount: 1500
+      gold:
+      - posRange: 1-10
+        rewards:
+        - type: item
+          id: banner_gold
+          amount: 1
+        - type: held_item
+          id: life_orb
+          amount: 1
+      platinum:
+      - posRange: 1-10
+        rewards:
+        - type: item
+          id: banner_platinum
+          amount: 1
+        - type: pokemon
+          id: legendary_f3
+          amount: 1
+      diamond:
+      - posRange: 1-10
+        rewards:
+        - type: banner
+          id: banner_diamond
+        - type: pokemon
+          id: legendary_f5
+      master:
+      - posRange: 1-10
+        rewards:
+        - type: banner
+          id: banner_master
+        - type: pokemon
+          id: legendary_f6
+    defaultRewards:
+    - type: money
+      amount: 300
+  battleRules:
+    maxTeamSize: 6
+    validateDuplicates: true
+    allowShiny: true
+    allowLegendary: true
+    validateHeldItems: true
+    bannedItems:
+    - master_ball
+    - master_guard
+    enforceBattleFormat: national_dex
+  dbSchema:
+    players: ranked_players
+    stats: ranked_stats
+    matches: ranked_matches
+    seasons: ranked_seasons
+    bans: ranked_bans
+    queues: ranked_queues
+    penalties: ranked_penalties
+  integrations:
+    discord:
+      enabled: true
+      webhookUrl: ''
+      postMatchSummary: true
+    payments:
+      enabled: false
+      provider: mercadopago
+  resetPolicy:
+    md5:
+      description: Reset com preservação parcial (jogadores antigos)
+      formula: novo_elo = elo_atual * preserveFactor + seasonRankFactor * (1 - preserveFactor)
+      preserveFactor: 0.25
+    md10:
+      description: Reset agressivo para jogadores novos
+      formula: novo_elo = baseNewPlayerElo
+      baseNewPlayerElo: 1000
+  extras:
+    api:
+      enabled: true
+      port: 8081
+      token: SUA_API_TOKEN
+    spectatorMode:
+      enable: true
+      allowedGroups:
+      - STAFF
+      - DONO
+    autoReportCheat:
+      enabled: true
+      thresholdSuspicious: 0.9
+  messages:
+    joinQueue: Você entrou na fila do formato {tier}.
+    leaveQueue: Você saiu da fila.
+    matchFound: Oponente encontrado! {player} — aceite em {seconds}s.
+    notEnoughElo: Você precisa de pelo menos {elo} ELO para entrar nessa faixa.
+    bannedFromTier: 'Você está banido do formato {tier}: {reason}.'
+    seasonEnded: A temporada {season} terminou! Recompensas distribuídas.
+  events:
+    onPlayerJoinQueue: true
+    onMatchStart: true
+    onMatchEnd: true
+    onSeasonStart: true
+    onSeasonEnd: true
