@@ -1,0 +1,112 @@
+elos:
+- id: iron
+  displayName: Ferro
+  minElo: 0
+  maxElo: 799
+  allowSubRanks: true
+  subRanks:
+  - Iron III
+  - Iron II
+  - Iron I
+  matchmaking:
+    canPlayWith:
+    - bronze
+  luckperms:
+    group: ranked_iron
+    inherit:
+    - Treinador
+- id: bronze
+  displayName: Bronze
+  minElo: 800
+  maxElo: 1399
+  allowSubRanks: true
+  subRanks:
+  - Bronze III
+  - Bronze II
+  - Bronze I
+  matchmaking:
+    canPlayWith:
+    - iron
+    - silver
+  luckperms:
+    group: ranked_bronze
+- id: silver
+  displayName: Prata
+  minElo: 1400
+  maxElo: 1999
+  allowSubRanks: true
+  subRanks:
+  - Silver III
+  - Silver II
+  - Silver I
+  matchmaking:
+    canPlayWith:
+    - bronze
+    - gold
+  luckperms:
+    group: ranked_silver
+- id: gold
+  displayName: Ouro
+  minElo: 2000
+  maxElo: 2599
+  allowSubRanks: true
+  subRanks:
+  - Gold III
+  - Gold II
+  - Gold I
+  matchmaking:
+    canPlayWith:
+    - silver
+    - platinum
+  luckperms:
+    group: ranked_gold
+- id: platinum
+  displayName: Platina
+  minElo: 2600
+  maxElo: 3299
+  allowSubRanks: true
+  subRanks:
+  - Plat III
+  - Plat II
+  - Plat I
+  matchmaking:
+    canPlayWith:
+    - gold
+    - diamond
+  luckperms:
+    group: ranked_platinum
+- id: diamond
+  displayName: Diamante
+  minElo: 3300
+  maxElo: 3999
+  allowSubRanks: true
+  subRanks:
+  - Diamond III
+  - Diamond II
+  - Diamond I
+  matchmaking:
+    canPlayWith:
+    - platinum
+    - master
+  luckperms:
+    group: ranked_diamond
+- id: master
+  displayName: Mestre
+  minElo: 4000
+  maxElo: 4999
+  allowSubRanks: false
+  matchmaking:
+    canPlayWith:
+    - diamond
+  luckperms:
+    group: ranked_master
+- id: challenger
+  displayName: Challenger
+  minElo: 5000
+  maxElo: 99999
+  allowSubRanks: false
+  matchmaking:
+    canPlayWith:
+    - master
+  luckperms:
+    group: ranked_challenger

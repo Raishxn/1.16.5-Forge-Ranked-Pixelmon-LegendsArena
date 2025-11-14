@@ -3,11 +3,12 @@ package com.raishxn.legendsarena.queue;
 // --- Imports corretos da API 1.16.5 ---
 import com.pixelmonmod.pixelmon.battles.api.BattleBuilder;
 import com.pixelmonmod.pixelmon.api.battles.BattleType;
-import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
+import com.pixelmonmod.pixelmon.api.pokemon.Pokemon; // Import necessário
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import com.pixelmonmod.pixelmon.battles.api.rules.BattleRuleRegistry;
 import com.pixelmonmod.pixelmon.battles.api.rules.BattleRules;
+import com.pixelmonmod.pixelmon.battles.api.rules.clauses.BattleClause;
 import com.pixelmonmod.pixelmon.battles.api.rules.clauses.BattleClauseRegistry;
 import com.pixelmonmod.pixelmon.battles.controller.participants.PlayerParticipant; // <-- NOVO IMPORT
 
@@ -129,7 +130,7 @@ public class QueueManager {
             int teamSize = 6; // Padrão
             BattleType battleType = BattleType.SINGLE; // Padrão
 
-            // --- CORREÇÃO 1: LÓGICA DE CLÁUSULAS ---
+            // --- LÓGICA DE CLÁUSULAS ---
             // Pega o Set de cláusulas padrão (mutável)
             Set<BattleClause> clauses = new HashSet<>(rules.getOrDefault(BattleRuleRegistry.CLAUSES));
 
@@ -169,28 +170,31 @@ public class QueueManager {
 
             // Define o Set de cláusulas atualizado de volta nas regras
             rules.set(BattleRuleRegistry.CLAUSES, clauses);
-            // --- FIM DA CORREÇÃO 1 ---
+            // --- FIM DA LÓGICA DE CLÁUSULAS ---
 
             // 3. Pegar as Partys dos jogadores
             PlayerPartyStorage party1 = StorageProxy.getStorageManager().getParty(player1);
             PlayerPartyStorage party2 = StorageProxy.getStorageManager().getParty(player2);
 
-            // 4. Montar os times (List<Pokemon> é usado para o .team() no 1.12, mas não aqui)
-            // Não precisamos mais disso para o BattleBuilder
 
-            // --- CORREÇÃO 2: LÓGICA DO BATTLEBUILDER ---
-            // Cria os BattleParticipants que o BattleBuilder espera
-            PlayerParticipant participant1 = new PlayerParticipant(player1, party1);
-            PlayerParticipant participant2 = new PlayerParticipant(player2, party2);
+            // --- INÍCIO DA CORREÇÃO 2: LÓGICA DO BATTLEBUILDER ---
 
-            // 5. Usar o BattleBuilder para iniciar a batalha
+            // 4. Montar os times (List<Pokemon> é necessário)
+            List<Pokemon> team1 = party1.getTeam();
+            List<Pokemon> team2 = party2.getTeam();
+
+            // 5. Cria os BattleParticipants que o BattleBuilder espera
+            // O construtor espera (ServerPlayerEntity, Pokemon...)
+            // Convertemos a List<Pokemon> para Pokemon[] usando .toArray()
+            PlayerParticipant participant1 = new PlayerParticipant(player1, team1.toArray(new Pokemon[0]));
+            PlayerParticipant participant2 = new PlayerParticipant(player2, team2.toArray(new Pokemon[0]));
+
+            // 6. Usar o BattleBuilder para iniciar a batalha
             BattleBuilder.builder()
                     .rules(rules)
                     .teamOne(participant1) // <-- Correto
                     .teamTwo(participant2) // <-- Correto
-                    .start(); // Inicia a batalha!
-
-            // 6. Rastreia a batalha como ranqueada
+                    .start();
             BattleManager.startRankedBattle(player1, player2);
 
         } catch (Exception e) {

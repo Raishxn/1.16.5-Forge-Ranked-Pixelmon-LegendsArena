@@ -1,0 +1,12 @@
+antiSmurf:
+  enabled: true
+  evaluateAfterMatches: 25
+  suspiciousWinrateThreshold: 0.85
+  suddenEloGainThreshold: 800
+  accountAgeDaysThreshold: 30
+  playtimeHoursThreshold: 50
+  ipMatchCheck: true
+  actions:
+    flagged: monitor
+    restrictQueue: restrict_queue
+    escalate: temp_ban

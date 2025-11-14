@@ -1,0 +1,7 @@
+messages:
+  joinQueue: Você entrou na fila do formato {tier}.
+  leaveQueue: Você saiu da fila.
+  matchFound: Oponente encontrado! {player} — aceite em {seconds}s.
+  notEnoughElo: Você precisa de pelo menos {elo} ELO para entrar nessa faixa.
+  bannedFromTier: 'Você está banido do formato {tier}: {reason}.'
+  seasonEnded: A temporada {season} terminou! Recompensas distribuídas.
