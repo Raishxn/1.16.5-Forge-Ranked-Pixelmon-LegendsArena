@@ -1,30 +1,59 @@
-database.type: sqlite
-general.baseline-elo: 1200
-general.plugin-enabled: true
-database: {type: , host: , port: , database: , username: ,
-    password: }
-general: {baseline-elo: 1200, plugin-enabled: true}
-season: {start-date: '2025-01-01', end-date: '2025-03-31', elo-reset-formula: HARD}
-elo:
-    provisional-k-factor: 64
-    provisional-matches: 10
-    winstreak-bonus: {threshold: 3, bonus-per-win: 5, max-bonus: 20}
-    max-elo-gain: 50
-    max-elo-loss: 50
-    min-elo: 100
-queues:
--   id: default
-    name: Default Queue
+server:
+  name: PokeMythic Ranked
+  version: 1.1.0
+  locale: pt_BR
+database:
+  type: mysql
+  host: 127.0.0.1
+  port: 3306
+  name: ranked_db
+  user: usuario
+  pass: senha
+  pool:
+    maxConnections: 10
+    minIdle: 1
+    connectionTimeout: 30000
+logging:
+  level: INFO
+  logMatches: true
+  logDir: ranked_logs
+integrations:
+  discord:
     enabled: true
-    battle-specs:
-        level-cap: 100
-        clauses: [speciesclause]
-        banned-pokemon: []
-        banned-moves: []
-        banned-abilities: []
-        banned-items: []
-ranks:
-- {name: Default, min-elo: 0, max-elo: 1000, k-factor: 32}
-messages: {queue-join: '&aVocê entrou na fila ranqueada!', queue-leave: '&cVocê saiu
-        da fila ranqueada.', match-found: '&bPartida encontrada! Adversário: &e%opponent%',
-    elo-change: '&7Seu ELO mudou: &e%new-elo% &7(&a%change%&7)'}
+    webhookUrl: ''
+    postMatchSummary: true
+  payments:
+    enabled: false
+    provider: mercadopago
+extras:
+  api:
+    enabled: true
+    port: 8081
+    token: SUA_API_TOKEN
+  spectatorMode:
+    enable: true
+    allowedGroups:
+    - STAFF
+    - DONO
+  autoReportCheat:
+    enabled: true
+    thresholdSuspicious: 0.9
+dbSchema:
+  players: ranked_players
+  stats: ranked_stats
+  matches: ranked_matches
+  seasons: ranked_seasons
+  bans: ranked_bans
+  queues: ranked_queues
+  penalties: ranked_penalties
+files:
+  tiers: tiers.yml
+  elos: elos.yml
+  bans_global: bans/global_bans.yml
+  bans_dir: bans/per_tier/
+  commands: commands.yml
+  permissions: permissions.yml
+  rewards: rewards.yml
+  seasons: seasons.yml
+  messages: messages.yml
+  anti_smurf: anti_smurf.yml
