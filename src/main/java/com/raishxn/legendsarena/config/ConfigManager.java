@@ -9,10 +9,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-// Importe TODOS os seus novos POJOs de config
-// (Assumindo que estão todos no mesmo pacote 'config')
-// Se você os colocou em 'config.models', ajuste os imports.
-
 public class ConfigManager {
 
     private final Path configDir;
@@ -20,6 +16,7 @@ public class ConfigManager {
     // Instâncias do Yaml para cada POJO
     private Yaml yamlCore, yamlElos, yamlTiers, yamlMessages, yamlSeasons;
     private Yaml yamlCommands, yamlPermissions, yamlRewards, yamlStats;
+    private Yaml yamlAntiSmurf, yamlBattleRules; // NOVO
 
     // POJOs de config carregados
     private CoreConfig coreConfig;
@@ -31,7 +28,8 @@ public class ConfigManager {
     private PermissionsConfig permissionsConfig;
     private RewardsConfig rewardsConfig;
     private StatsConfig statsConfig;
-    // ... e para os bans ...
+    private AntiSmurfConfig antiSmurfConfig; // NOVO
+    private BattleRulesConfig battleRulesConfig; // NOVO
 
     public ConfigManager(Path configDir) {
         this.configDir = configDir;
@@ -55,6 +53,8 @@ public class ConfigManager {
         this.yamlPermissions = new Yaml(new Constructor(PermissionsConfig.class, loaderOptions));
         this.yamlRewards = new Yaml(new Constructor(RewardsConfig.class, loaderOptions));
         this.yamlStats = new Yaml(new Constructor(StatsConfig.class, loaderOptions));
+        this.yamlAntiSmurf = new Yaml(new Constructor(AntiSmurfConfig.class, loaderOptions)); // NOVO
+        this.yamlBattleRules = new Yaml(new Constructor(BattleRulesConfig.class, loaderOptions)); // NOVO
     }
 
     public void loadConfigs() {
@@ -71,8 +71,15 @@ public class ConfigManager {
         this.rewardsConfig = loadConfig("rewards.yml", RewardsConfig.class, this.yamlRewards);
         this.statsConfig = loadConfig("stats.yml", StatsConfig.class, this.yamlStats);
 
+        // --- NOVOS ARQUIVOS ---
+        this.antiSmurfConfig = loadConfig("anti_smurf.yml", AntiSmurfConfig.class, this.yamlAntiSmurf);
+        this.battleRulesConfig = loadConfig("battle_rules.yml", BattleRulesConfig.class, this.yamlBattleRules);
+
         // Carregar bans (que são uma pasta)
         loadBans();
+
+        // Carregar schemas (que são uma pasta) // NOVO
+        loadSchemas();
 
         legendsarena.LOGGER.info("Configurações carregadas.");
     }
@@ -86,7 +93,14 @@ public class ConfigManager {
             copyDefaultFile(fileName, configFile);
         }
 
+        // Se o arquivo ainda não existir (falha ao copiar), retorne nulo
+        if (!configFile.exists()) {
+            legendsarena.LOGGER.error("Não foi possível criar o arquivo " + fileName + ". Carregamento abortado para este arquivo.");
+            return null;
+        }
+
         try (InputStream in = new FileInputStream(configFile)) {
+            // Se o arquivo estiver vazio, o loadAs pode retornar null, o que é ok
             return yaml.loadAs(in, clazz);
         } catch (Exception e) {
             legendsarena.LOGGER.error("Falha ao carregar " + fileName, e);
@@ -108,22 +122,48 @@ public class ConfigManager {
 
         // Copia os arquivos de bans padrão
         copyDefaultFile("bans/global_bans.yml", bansDir.resolve("global_bans.yml").toFile());
-        // Você pode carregar os bans de 'per_tier' dinamicamente quando um Tier for carregado
+        // Adicione os bans per_tier que você quer gerar por padrão
+        copyDefaultFile("bans/per_tier/ou_bans.yml", perTierDir.resolve("ou_bans.yml").toFile());
+        copyDefaultFile("bans/per_tier/uu_bans.yml", perTierDir.resolve("uu_bans.yml").toFile());
+        copyDefaultFile("bans/per_tier/nationaldex_bans.yml", perTierDir.resolve("nationaldex_bans.yml").toFile());
+    }
+
+    // --- NOVO MÉTODO ---
+    private void loadSchemas() {
+        Path schemasDir = configDir.resolve("schemas");
+
+        if (!Files.exists(schemasDir)) {
+            try { Files.createDirectories(schemasDir); } catch (IOException e) {
+                legendsarena.LOGGER.error("Falha ao criar diretório 'schemas'!", e);
+            }
+        }
+
+        // Copia o arquivo SQL padrão
+        copyDefaultFile("schemas/tables.sql", schemasDir.resolve("tables.sql").toFile());
     }
 
     // Método para copiar arquivos padrão
     private void copyDefaultFile(String resourcePath, File destination) {
         if(destination.exists()) return;
+
+        // Garante que os diretórios pais existam antes de tentar copiar
+        File parentDir = destination.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+
         try (InputStream in = legendsarena.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (in == null) {
                 legendsarena.LOGGER.warn("Recurso não encontrado: " + resourcePath + ". Criando arquivo vazio.");
+                // Cria um arquivo vazio se o recurso não for encontrado
                 destination.createNewFile();
                 return;
             }
-            destination.getParentFile().mkdirs();
             Files.copy(in, destination.toPath());
         } catch (IOException e) {
             legendsarena.LOGGER.error("Falha ao copiar config padrão: " + resourcePath, e);
+        } catch (Exception e) {
+            legendsarena.LOGGER.error("Erro inesperado ao copiar " + resourcePath, e);
         }
     }
 
@@ -137,4 +177,6 @@ public class ConfigManager {
     public PermissionsConfig getPermissionsConfig() { return this.permissionsConfig; }
     public RewardsConfig getRewardsConfig() { return this.rewardsConfig; }
     public StatsConfig getStatsConfig() { return this.statsConfig; }
+    public AntiSmurfConfig getAntiSmurfConfig() { return this.antiSmurfConfig; }
+    public BattleRulesConfig getBattleRulesConfig() { return this.battleRulesConfig; }
 }

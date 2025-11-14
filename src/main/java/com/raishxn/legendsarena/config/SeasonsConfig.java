@@ -2,60 +2,36 @@ package com.raishxn.legendsarena.config;
 
 public class SeasonsConfig {
 
-    private String activeSeason;
-    private ResetPolicy resetPolicy;
+    private CurrentSeason currentSeason;
 
-    // Getters e Setters
-    public String getActiveSeason() {
-        return activeSeason;
+    public CurrentSeason getCurrentSeason() {
+        return currentSeason;
     }
 
-    public void setActiveSeason(String activeSeason) {
-        this.activeSeason = activeSeason;
+    public void setCurrentSeason(CurrentSeason currentSeason) {
+        this.currentSeason = currentSeason;
     }
 
-    public ResetPolicy getResetPolicy() {
-        return resetPolicy;
-    }
+    public static class CurrentSeason {
+        private int id;
+        private String name;
+        private String startDate;
+        private String endDate;
+        private String eloResetMethod;
 
-    public void setResetPolicy(ResetPolicy resetPolicy) {
-        this.resetPolicy = resetPolicy;
-    }
+        public int getId() { return id; }
+        public void setId(int id) { this.id = id; }
 
-    // Classe interna para a seção "resetPolicy"
-    public static class ResetPolicy {
-        private String defaultPolicy; // Mudei de "default" para "defaultPolicy"
-        private double preserveFactor;
-        private int newPlayerBaseElo;
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
 
-        // NOTA: "default" é uma palavra-chave em Java.
-        // No seu seasons.yml, use "defaultPolicy" para evitar problemas.
-        // Ex:
-        // resetPolicy:
-        //   defaultPolicy: "md5"
+        public String getStartDate() { return startDate; }
+        public void setStartDate(String startDate) { this.startDate = startDate; }
 
-        public String getDefaultPolicy() {
-            return defaultPolicy;
-        }
+        public String getEndDate() { return endDate; }
+        public void setEndDate(String endDate) { this.endDate = endDate; }
 
-        public void setDefaultPolicy(String defaultPolicy) {
-            this.defaultPolicy = defaultPolicy;
-        }
-
-        public double getPreserveFactor() {
-            return preserveFactor;
-        }
-
-        public void setPreserveFactor(double preserveFactor) {
-            this.preserveFactor = preserveFactor;
-        }
-
-        public int getNewPlayerBaseElo() {
-            return newPlayerBaseElo;
-        }
-
-        public void setNewPlayerBaseElo(int newPlayerBaseElo) {
-            this.newPlayerBaseElo = newPlayerBaseElo;
-        }
+        public String getEloResetMethod() { return eloResetMethod; }
+        public void setEloResetMethod(String eloResetMethod) { this.eloResetMethod = eloResetMethod; }
     }
 }
