@@ -99,22 +99,36 @@ dependencies {
 
     implementation 'org.yaml:snakeyaml:1.28'
     implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
-    implementation 'mysql:mysql-connector-java:8.0.27'
-    shadow 'com.zaxxer:HikariCP:4.0.3'
+    implementation('com.zaxxer:HikariCP:5.0.1') {
+        exclude group: 'org.apache.logging.log4j'
+    }
 
-    implementation group: 'com.envyful.api', name: 'commons', version: '8.2.1'
+// Modificamos o MySQL para excluir o log4j
+    implementation('mysql:mysql-connector-java:8.0.33') {
+        exclude group: 'org.apache.logging.log4j'
+    }
+
+    implementation(group: 'com.envyful.api', name: 'commons', version: '8.2.1') {
+        exclude group: 'org.apache.logging.log4j'
+    }
     implementation (group: 'com.envyful.api', name: 'forge16', version: '8.2.1') {
         transitive = false;
+        exclude group: 'org.apache.logging.log4j'
     }
     implementation (group: 'com.envyful.api', name: 'reforged16', version: '8.2.1') {
         transitive = false;
+        exclude group: 'org.apache.logging.log4j'
     }
-    shadow group: 'com.envyful.api', name: 'commons', version: '8.2.1'
+    shadow(group: 'com.envyful.api', name: 'commons', version: '8.2.1') {
+        exclude group: 'org.apache.logging.log4j'
+    }
     shadow (group: 'com.envyful.api', name: 'forge16', version: '8.2.1') {
         transitive = false;
+        exclude group: 'org.apache.logging.log4j'
     }
     shadow (group: 'com.envyful.api', name: 'reforged16', version: '8.2.1') {
         transitive = false;
+        exclude group: 'org.apache.logging.log4j'
     }
 }
 
