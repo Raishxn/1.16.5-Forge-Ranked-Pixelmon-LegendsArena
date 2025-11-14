@@ -1,8 +1,8 @@
 database.type: sqlite
 general.baseline-elo: 1200
 general.plugin-enabled: true
-database: {type: sqlite, host: localhost, port: 3306, database: legendsarena, username: user,
-    password: password}
+database: {type: , host: , port: , database: , username: ,
+    password: }
 general: {baseline-elo: 1200, plugin-enabled: true}
 season: {start-date: '2025-01-01', end-date: '2025-03-31', elo-reset-formula: HARD}
 elo:
