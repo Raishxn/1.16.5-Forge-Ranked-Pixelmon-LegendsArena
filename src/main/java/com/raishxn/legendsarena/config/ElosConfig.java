@@ -1,18 +1,19 @@
 package com.raishxn.legendsarena.config;
 
 import com.raishxn.legendsarena.config.models.EloTier;
-
 import java.util.List;
 
 public class ElosConfig {
 
-    private List<EloTier> tiers;
+    // O nome da variável deve ser "ranks" para bater com o YAML
+    // O seu elos.yml deve começar com "ranks:"
+    private List<EloTier> ranks;
 
-    public List<EloTier> getTiers() {
-        return tiers;
+    public List<EloTier> getRanks() {
+        return ranks;
     }
 
-    public void setTiers(List<EloTier> tiers) {
-        this.tiers = tiers;
+    public void setRanks(List<EloTier> ranks) {
+        this.ranks = ranks;
     }
 }

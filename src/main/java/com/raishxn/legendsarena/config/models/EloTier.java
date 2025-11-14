@@ -3,20 +3,30 @@ package com.raishxn.legendsarena.config.models;
 import java.util.List;
 
 public class EloTier {
-
-    private String name;
+    private String id;
+    private String displayName;
     private int minElo;
     private int maxElo;
-    private List<SubTier> subTiers;
+    private List<String> subranks;
+    private List<String> canPlayWith;
+    private String luckpermsGroup;
 
-    // Getters e Setters
+    // --- Getters e Setters Completos ---
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public int getMinElo() {
@@ -35,33 +45,27 @@ public class EloTier {
         this.maxElo = maxElo;
     }
 
-    public List<SubTier> getSubTiers() {
-        return subTiers;
+    public List<String> getSubranks() {
+        return subranks;
     }
 
-    public void setSubTiers(List<SubTier> subTiers) {
-        this.subTiers = subTiers;
+    public void setSubranks(List<String> subranks) {
+        this.subranks = subranks;
     }
 
-    // Classe interna para os Sub-elos
-    public static class SubTier {
-        private String name; // Ex: "Gold I"
-        private int minElo;
+    public List<String> getCanPlayWith() {
+        return canPlayWith;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void setCanPlayWith(List<String> canPlayWith) {
+        this.canPlayWith = canPlayWith;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public String getLuckpermsGroup() {
+        return luckpermsGroup;
+    }
 
-        public int getMinElo() {
-            return minElo;
-        }
-
-        public void setMinElo(int minElo) {
-            this.minElo = minElo;
-        }
+    public void setLuckpermsGroup(String luckpermsGroup) {
+        this.luckpermsGroup = luckpermsGroup;
     }
 }
